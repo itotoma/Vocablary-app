@@ -1,0 +1,52 @@
+<% content_for :cover do %>
+  <header>
+    <nav style="background-color:skyblue; height:50px;">
+      <h1 style="color:white; margin:0px 10px; padding:10px; font-size:30px;">単語帳アプリ</h1>
+    </nav>
+  </header>
+<% end %>
+
+
+<div class="col-md-5" style="test-align:center;" >
+
+<%= render 'layouts/flash_messages' %>
+<h2 style="border-bottom: 1px solid black; font-size:30px;">ログイン</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control'  %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit "ログイン",class: 'btn btn-warning btn-block' %>
+  </div>
+<% end %>
+
+<class="clearfix">
+  <div class = "left-float" style="margin-top:20px; margin-bottom:20px;">
+      <a href="/users/password/new">パスワードを忘れた方</a>
+  </div>
+  <div class = "left-float col-xs-offset-1" style="margin-top:20px; margin-bottom:20px;">
+      <a href="/users/sign_up">新規登録</a>
+  </div>
+</class>
+<br>
+<h1 class="caption">外部IDでログイン</h1>
+<div class="auth">
+    <a href="users/auth/twitter/"><i class="fab fa-twitter-square fa-4x col-xs-offset-1"></i></a>
+    <a href="users/auth/facebook"><i class="fab fa-facebook fa-4x col-xs-offset-1"></i></a>
+    <a href="users/auth/google_oauth2"><i class="fab fa-google-plus-square fa-4x col-xs-offset-1"></i></a>
+    <a href="users/auth/yahoojp"><i class="fab fa-yahoo fa-3x col-xs-offset-1"></i></a>
+</div>
+</div>

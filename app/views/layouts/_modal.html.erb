@@ -1,0 +1,22 @@
+<div class="modal fade" id="modal-sample<%= id %>" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    
+    <!-- 3.モーダルのコンテンツ -->
+    <div class="modal-content" style="background-color:skyblue;">
+      <div class="modal-body">
+         <!-- 送るべき情報  Status タイトル 何話メカ -->
+        <%= link_to(home_question_path(story_id: id, status: "unclear")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2">未回答のみ</button><% end %>
+        <%= link_to(home_question_path(story_id: id, status: "correct")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="far fa-circle"></i>のみ</button><% end %>
+        <%= link_to(home_question_path(story_id: id, status: "incorrect")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="fas fa-times"></i>のみ</button><% end %>
+        <%= link_to(home_question_path(story_id: id, status: "like")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="fas fa-star"></i>のみ</button><% end %>
+        <%= link_to(home_question_path(story_id: id, status:   "all")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2">全て</button><% end %>
+      </div>
+      <!-- 6.モーダルのフッタ -->
+      <div class="modal-footer">
+          <button type="button" class="close btn btn-default" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: MyString
+  answer: MyString
+  sound-file: MyString
+  story: one
+
+two:
+  question: MyString
+  answer: MyString
+  sound-file: MyString
+  story: two

@@ -1,0 +1,41 @@
+<% content_for :cover do %>
+<header>
+      <nav style="background-color:skyblue; height:50px;">
+        <h1 style="color:white; margin:0px 10px; padding:10px; font-size:30px;">単語帳アプリ</h1>
+      </nav>
+    </header>
+<% end %>
+<div class="col-md-5" style="test-align:center;" >
+<h2>パスワードを忘れた方</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions",class: "btn btn-primary" %>
+  </div>
+<% end %>
+  <class="clearfix">
+    <div class = "left-float" style="margin-top:20px; margin-bottom:20px;">
+        <a href="/users/sign_in">ログイン</a>
+    </div>
+    <div class = "left-float col-xs-offset-1" style="margin-top:20px; margin-bottom:20px;">
+        <a href="/users/sign_up">新規登録</a>
+    </div>
+  </class>
+
+</class>
+<h1 class="caption">外部IDでログイン</h1>
+  <div class="auth">
+      <a href="users/auth/twitter/"><i class="fab fa-twitter-square fa-4x col-xs-offset-1"></i></a>
+      <a href="users/auth/facebook"><i class="fab fa-facebook fa-4x col-xs-offset-1"></i></a>
+      <a href="users/auth/google_oauth2"><i class="fab fa-google-plus-square fa-4x col-xs-offset-1"></i></a>
+      <a href="users/auth/yahoojp"><i class="fab fa-yahoo fa-3x col-xs-offset-1"></i></a>
+  </div>
+</div>
+
+</div>
