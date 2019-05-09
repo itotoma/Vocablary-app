@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
     '/home/index'
  end
  
+ private
+  def get_sign_in_user
+        #utilize devise helper 
+        @current_user = current_user
+  end
+    
 end

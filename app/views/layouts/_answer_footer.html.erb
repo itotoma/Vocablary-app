@@ -1,0 +1,10 @@
+<div>
+    <%= link_to(home_question_path(this_question_id: question_id, status: "correct", position: "answer_page"), remote: true) do %>
+           <button class="btn btn-danger col-xs-6"><i class="far fa-circle fa-5x"></i></button>
+    <% end %>
+</div>
+<div>
+    <%= link_to(home_question_path(this_question_id: question_id, status: "incorrect", position: "answer_page"), remote: true) do %>
+           <button class="btn btn-primary col-xs-6"><i class="fas fa-times fa-5x"></i></button>
+    <% end %>
+</div>

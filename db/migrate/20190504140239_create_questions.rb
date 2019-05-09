@@ -5,7 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[5.1]
       t.string :answer, presence: true
       t.string :sound_file
       t.references :story, foreign_key: true
-
+      
       t.timestamps
     end
   end

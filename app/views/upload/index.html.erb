@@ -1,0 +1,21 @@
+<% content_for :cover do %>
+    <%= render 'layouts/navbar',title: "管理者画面" %>
+<% end %>
+
+<div class="panel panel-default", style="margin-top:30px;">
+    <div class="panel-body">
+        <%= form_tag import_upload_index_path, multipart: true do %>
+            <div>
+                <h4>ドラマタイトル</h4>
+                <%= text_field_tag :title%>
+            </div>
+            <div>
+                <h4>何話目か</h4>
+                <%= number_field_tag :number %>
+            </div>
+            <h4>CSVをアップロードしてください</h4>
+            <%= file_field_tag :file, class: "btn btn-default" %>
+            <%= submit_tag "インポート", class: "btn btn-success", style: "margin-top:10px;"  %>
+        <% end %>
+       </div>
+</div>

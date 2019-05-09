@@ -36,3 +36,22 @@
         </nav>
     </header>
 <% end %>
+
+<% if @question.present? %>
+
+    <h1 id="question", style="text-align:center;"><%= @question.question %></h1>
+    
+    <h1 id="answer", style="text-align:center; margin-top:60px;"></h1>
+    
+    <footer id="footer">
+       <%# <%= render 'layouts/answer_footer' %>
+       <%= render 'layouts/question_footer', this_question_id: @question.id %>
+       
+    </footer>
+    
+<% else %>
+
+    <h1 style="text-align:center;">問題はありません</h1>
+    
+<% end %>
+    

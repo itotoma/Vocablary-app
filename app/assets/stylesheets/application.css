@@ -60,3 +60,10 @@
 .modal-body button {
   margin-bottom: 10px;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  height: 100px;
+}
