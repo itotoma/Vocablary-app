@@ -11,7 +11,8 @@ class HomeController < ApplicationController
         else
             @nav_title = "一覧を見る"
         end
-        @story = Story.group(:title)
+         @title = Story.group(:title).count.keys
+    
     end
     
     def question
@@ -105,7 +106,12 @@ class HomeController < ApplicationController
             else
                 Status.create(status: given_status, question_id: given_question_id, user_id: current_user.id)
             end
-            @aim = 0
+            
+            if @next_question_id.present?
+                @aim = 0
+            else
+                @aim = 2
+            end
             #問題を入れ替える
         end
     end

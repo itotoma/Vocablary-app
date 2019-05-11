@@ -2,6 +2,9 @@ class UploadController < ApplicationController
   before_action :authenticate_user!
   before_action :get_sign_in_user
   def index
+    unless current_user.email == "test@gmail.com"
+      redirect_to home_index_path
+    end
   end
   
   def import

@@ -9,3 +9,9 @@ if(!<%= @aim %>){
     $('#answer').html("");
     $('#question').html("<%= @next_question %>");
 }
+
+if(<%= @aim %> == 2 ){
+    $('#footer').html("");
+    $('#answer').html("");
+    $('#question').html("問題は以上です!");
+}

@@ -3,7 +3,8 @@
 <% end %>
 
 <div class="panel-group" id="accordion">
-    <% @story.each do |story| %>
+    <% @title.each do |title| %>
+        <% story = Story.find_by(title: title) %>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4  class="panel-title" data-toggle="collapse"  data-target="#collapse<%= story.id %>">
