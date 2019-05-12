@@ -22,6 +22,7 @@ class HomeController < ApplicationController
             if params[:story_id]
                 @story = Story.find(params[:story_id])
                 @question = @story.questions[0]
+                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
                 @status = params[:status]
             end
         end
@@ -30,6 +31,7 @@ class HomeController < ApplicationController
             if params[:story_id]
                 @story = Story.find(params[:story_id])
                 @question = @story.questions[0]
+                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
                 @status = params[:status]
             end
         end
@@ -38,6 +40,7 @@ class HomeController < ApplicationController
             if params[:story_id]
                 @story = Story.find(params[:story_id])
                 @question = @story.questions[0] #status incollect のみ
+                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
                 @status = params[:status]
             end
         end
@@ -46,6 +49,7 @@ class HomeController < ApplicationController
             if params[:story_id]
                 @story = Story.find(params[:story_id])
                 @question = @story.questions[0] #Likeのみ
+                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
                 @status = params[:status]
             end
         end
@@ -54,6 +58,7 @@ class HomeController < ApplicationController
             if params[:story_id]
                 @story = Story.find(params[:story_id])
                 @question = @story.questions[0]
+                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
                 @status = params[:status]
             end
         end
@@ -77,6 +82,7 @@ class HomeController < ApplicationController
         
         if params[:position] == "question_page"     
             @this_question_id = params[:this_question_id]
+            @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{Question.find(@this_question_id).sound_file}"
             #current_userとquestionのStatusがすでに作成されている場合 -> @this_status は Update
             #current_userとquestionのStatusがすでに作成されていない場合 -> @this_status は build
             @answer = Question.find(@this_question_id).answer
@@ -86,7 +92,7 @@ class HomeController < ApplicationController
     end
     
     def transition_from_answer_to_question
-    
+        
         if params[:position] == "answer_page"     
             given_status = params[:status]
             given_question_id = params[:this_question_id]
@@ -96,6 +102,7 @@ class HomeController < ApplicationController
                 if question.id > given_question_id.to_i
                     @next_question = question.question
                     @next_question_id = question.id
+                    @sound_file = question.sound_file
                     break
                 end
             end

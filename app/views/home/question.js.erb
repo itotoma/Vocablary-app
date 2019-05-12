@@ -8,6 +8,7 @@ if(!<%= @aim %>){
     $('#footer').html("<%= escape_javascript(render 'layouts/question_footer', this_question_id: @next_question_id) %>");
     $('#answer').html("");
     $('#question').html("<%= @next_question %>");
+    $('#sound').html("<%= escape_javascript(render 'layouts/audio', sound_file: @sound_file , num: @next_question_id) %>");
 }
 
 if(<%= @aim %> == 2 ){
