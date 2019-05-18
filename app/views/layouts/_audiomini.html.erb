@@ -1,0 +1,38 @@
+<button><i class="fas fa-play fa-1x" type="button" id="audiobutton<%=num%>" value=""  ></i></button> 
+<script>
+    $(function() {
+        if(!audio){
+            var audio = new Audio("");
+        }
+        var src = "";
+        var name = "再生できません";
+        var state = 0;  // 0:pause, 1:playing
+        if(audio.canPlayType){
+            if(audio.canPlayType("audio/ogg") != ""){
+                src =  "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/0000.mp3";
+            }
+        }
+        if(src != ""){
+            $("#audiobutton<%=num%>").click(function(ev){
+                //ajaxはページが読み込まれるわけではないので、処理はこの .clickで行うことになる
+                audio.src = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/<%= sound_file %>";
+                if(state == 0){
+                    audio.load();
+                    audio.play();
+                    state = 0;
+                }else{
+                    audio.pause();
+                    state = 0;
+                }
+            });
+            $("#footer").click(function(ev){
+                audio.pause();
+                state = 0;
+            });
+            $("#navbarEexample").click(function(ev){
+                audio.pause();
+                state = 0;
+            });
+        }
+    });
+</script>

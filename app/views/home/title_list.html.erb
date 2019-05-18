@@ -16,7 +16,11 @@
                 <ul class="list-group">
                   <% @id = no_story.id %>
                   <li class="list-group-item"><a data-toggle="modal" href="#modal-sample<%= no_story.id %>">第<%= no_story.number %>話</a></li>
-                  <%= render 'layouts/modal', id: @id %>
+                      <% if params[:req] == "learn" %>
+                          <%= render 'layouts/modal_learn', id: @id %>
+                      <% elsif params[:req] == "show" %>
+                          <%= render 'layouts/modal_show', id: @id %>
+                      <% end %>
                 </ul>
               <% end %>
             </div>

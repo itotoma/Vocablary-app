@@ -34,37 +34,41 @@
         	</div>
         </nav>
         <nav class="sub_nav">
-            <p class="fraction" id='numerator' style="margin-left:20px;"><%= @index+1 %></p>
-            <p class="fraction">/ <%= @total %></p>
+           <p class="inline" style="margin-left:20px;">未 <%= select_question_whose_status_is_("unclear",@story.id).count %></p>
+           <p class="inline"><i class="far fa-circle" style="color:red;"></i> <%= select_question_whose_status_is_("correct",@story.id).count %></p>
+           <p class="inline"><i class="fas fa-times" style="color:blue;"></i> <%= select_question_whose_status_is_("incorrect",@story.id).count %></p>
         </nav>
     </header>
 <% end %>
 
-
-<div class="wraper">
-   
-    <% if @question.present? %>
-    
-        <h1 id="question", style="text-align:center;"><%= @question.question %></h1>
-        <hr>
-        <h1 id="answer", style="text-align:center; margin-top:30px;"><!-- answer --></h1>
-        
-
-        <div id="audio">
-            <%= render 'layouts/audio', sound_file: @question.sound_file, num: @question.id %>
-        </div>
-        <div id="favorite">
-            <%= render 'layouts/favorite_star', question: @question %>
-        </div>
-        
-        <%= content_for :cover2 do %>
-            <footer id="footer">
-                <%= render 'layouts/question_footer', this_question_id: @question.id, selecting_sta: @status, ind: @index, total: @total %>
-                <%#= render 'layouts/answer_footer', this_question_id: @question.id, category: @selecting_status %>
-            </footer>
-        <% end %>
-    <% else %>
-        <h1 style="text-align:center;">問題が見つかりません!</h1>
-    <% end %>
-    
-</div>
+<table>
+    <tr>
+        <th class="col-xs-10"></th>
+        <th class="col-xs-1"></th>
+        <th class="col-xs-1"></th>
+        <th class="col-xs-1"></th>
+    </tr>
+<% @questions.each do |question| %>
+    <tr style="border-bottom:groove;">
+        <td>
+            <p style="margin-bottom: 0px;"><%= question.question %></p>
+            <p style="margin-top: 0px;"><%= question.answer %></p>
+        </td>
+        <td>
+            <%= render 'layouts/audiomini', sound_file: question.sound_file, num: question.id %>
+        </td>
+        <td class="star" id=<%= question.id %>>
+            <%= render 'layouts/favorite_starmini', question: question %>
+        </td>
+        <td>
+            <% if status(question) == "correct" %>
+                <i class="far fa-circle" style="color:red;"></i>
+            <% elsif status(question) == "incorrect" %>
+                <i class="fas fa-times" style="color:blue;"></i>
+            <% else %>
+                <p>未</p>
+            <% end %>
+        </td>
+    </tr>
+<% end %>
+</table>

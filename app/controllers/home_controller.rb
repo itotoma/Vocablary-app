@@ -5,13 +5,35 @@ class HomeController < ApplicationController
     def index
     end
     
+    def list
+        if params[:story_id]
+            @story = Story.find(params[:story_id])
+            @status = params[:selecting_status]
+            @questions = select_question_whose_status_is_(params[:selecting_status],params[:story_id])
+        end
+        
+        if params[:position] == "favorite"
+            favorite =  @current_user.favorites.find_by(question_id: params[:question_id])
+            if favorite.present?
+                favorite.delete
+            else
+                @current_user.favorites.build(question_id: params[:question_id]).save
+            end
+            @question = Question.find(params[:question_id])
+        end
+        respond_to do |format|
+            format.html
+            format.js
+        end
+    end
+    
     def title_list
-        if params[:url].to_i == 1
+        if params[:req] == "learn"
             @nav_title = "学習する"
         else
             @nav_title = "一覧を見る"
         end
-         @title = Story.group(:title).count.keys
+        @title = Story.group(:title).count.keys
     
     end
     

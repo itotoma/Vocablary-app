@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/title_list'
   get 'home/question'
+  get 'home/list'
   post 'home/question'
   
   devise_scope :user do

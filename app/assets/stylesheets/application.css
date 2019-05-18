@@ -73,13 +73,13 @@ footer {
   left:calc(50% - 60px);
   margin: 0 0 0 0;
   width: 100px;
-  top: 400px;
+  top: 60%;
 }
 
 #favorite{
   position: fixed;
   left:calc(50% + 80px);
-  top: 410px;
+  top: 62%;
 }
 
 .wraper {
@@ -118,4 +118,10 @@ footer .answer_select{
   display: inline-block;
   color:red; 
   font-size:20px;
+}
+
+.inline{
+  display: inline-block;
+  font-size:20px;
+  margin-left:15px;
 }

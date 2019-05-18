@@ -22,5 +22,16 @@ module HomeHelper
         return whole_questions
     end
     
+    def status(question)
+        tmp = question.statuses.find_by(user_id: @current_user.id)
+        if tmp.present?
+            status = tmp.status
+        else
+            status = "hoge"
+        end
+        return status
+    end
+            
+    
     
 end
