@@ -1,18 +1,26 @@
 <%# if transition from question to answer %>
-if(<%= @aim %>){
-    $('#footer').html("<%= escape_javascript(render 'layouts/answer_footer', question_id: @this_question_id) %>");
-    <%# javascript内にHTMLを記述するときは、jsを抜けるためにescape_jabascript を記述  https://console.aws.amazon.com/cloud9/ide/f2b198791fb24d5cb554655bf85b589a%>
-    $('#answer').html("<%= @answer %>");
-}
-if(!<%= @aim %>){
-    $('#footer').html("<%= escape_javascript(render 'layouts/question_footer', this_question_id: @next_question_id) %>");
+if(<%= @aim %> == 0){
+    $('#footer').html("<%= escape_javascript(render 'layouts/question_footer', this_question_id: @question.id) %>");
     $('#answer').html("");
-    $('#question').html("<%= @next_question %>");
-    $('#sound').html("<%= escape_javascript(render 'layouts/audio', sound_file: @sound_file , num: @next_question_id) %>");
+    $('#question').html("<%= @question.question %>");
+    $('#audio').html("<%= escape_javascript(render 'layouts/audio', sound_file: @question.sound_file , num: @question.id) %>");
+    $('#favorite').html("<%= escape_javascript(render 'layouts/favorite_star', question: @question) %>");
+}
+
+if(<%= @aim %> == 1){
+    $('#footer').html("<%= escape_javascript(render 'layouts/answer_footer', question_id: @question.id) %>");
+    $('#answer').html("<%= @question.answer %>");
+    $('#favorite').html("<%= escape_javascript(render 'layouts/favorite_star', question: @question) %>");
 }
 
 if(<%= @aim %> == 2 ){
     $('#footer').html("");
     $('#answer').html("");
     $('#question').html("問題は以上です!");
+    $('#favorite').html("");
 }
+
+if(<%= @aim %> == 3 ){
+   $('#favorite').html("<%= escape_javascript(render 'layouts/favorite_star', question: @question) %>");
+}
+

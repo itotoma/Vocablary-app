@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :statuses
   has_many :questions, through: :statuses
+  has_many :favorites
+  has_many :favorite_questions, through: :favorites, :source => 'question'
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190505130641) do
+ActiveRecord::Schema.define(version: 20190515173935) do
+
+  create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_favorites_on_question_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "question"
@@ -55,6 +64,8 @@ ActiveRecord::Schema.define(version: 20190505130641) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorites", "questions"
+  add_foreign_key "favorites", "users"
   add_foreign_key "questions", "stories"
   add_foreign_key "statuses", "questions"
   add_foreign_key "statuses", "users"

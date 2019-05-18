@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources 'upload', only: :index do
     collection {post :import}
   end
+  
+  resources 'favorite', only: [:create,:destroy]
 end

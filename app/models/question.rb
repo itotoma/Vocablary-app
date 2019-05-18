@@ -2,6 +2,8 @@ class Question < ApplicationRecord
   belongs_to :story
   has_many :statuses
   has_many :users, through: :statuses
+  has_many :favorites
+  has_many :users, through: :favorites
   
   
   def self.import(file)

@@ -9,7 +9,7 @@
         				<span class="icon-bar"></span>
         				<span class="icon-bar"></span>
         			</button>
-        			<h1 style="color:white; margin:0px 10px; padding:10px; font-size:20px;">
+        			<h1 class="selecting_status" style="color:white; margin:0px 10px; padding:10px; font-size:20px;">
         			    <%= @story.title %>
         			    <br>
         			    <% if @status == "unclear"%>
@@ -18,7 +18,7 @@
         			         第<%= @story.number %>話: <i class="far fa-circle"></i>のみ
         			    <% elsif @status == "incorrect"%>
         			         第<%= @story.number %>話: <i class="fas fa-times"></i>のみ
-        			    <% elsif @status == "like" %>
+        			    <% elsif @status == "favorite" %>
         			         第<%= @story.number %>話: <i class="fas fa-star"></i>のみ
         			    <% elsif @status == "all" %>
         			         第<%= @story.number %>話: 全て
@@ -29,7 +29,6 @@
         			<ul class="nav navbar-nav">
         				<li><%= link_to 'ログアウト',destroy_user_session_path, method: :delete %></li>
         				<li><%= link_to 'ホームに戻る', home_index_path %></li>
-        				<li><%= @current_user.email %></li>
         			</ul>
         		</div>
         	</div>
@@ -37,31 +36,33 @@
     </header>
 <% end %>
 
-<% if @question.present? %>
+<div class="wraper">
+   
+    <% if @question.present? %>
+    
+        <h1 id="question", style="text-align:center;"><%= @question.question %></h1>
+        <hr>
+        <h1 id="answer", style="text-align:center; margin-top:30px;"><!-- answer --></h1>
+        
 
-    <h1 id="question", style="text-align:center;"><%= @question.question %></h1>
+        <div id="audio">
+            <%= render 'layouts/audio', sound_file: @question.sound_file, num: 1 %>
+        </div>
+        <div id="favorite">
+            <%= render 'layouts/favorite_star', question: @question %>
+        </div>
+        
+        <%= content_for :cover2 do %>
+            <footer id="footer">
+                <%= render 'layouts/question_footer', this_question_id: @question.id %>
+                <%#= render 'layouts/answer_footer', this_question_id: @question.id, category: @selecting_status %>
+            </footer>
+        <% end %>
     
-    <h1 id="answer", style="text-align:center; margin-top:60px;"></h1>
+    <% else %>
     
-    <footer id="footer">
-       <%# <%= render 'layouts/answer_footer' %>
-       <%= render 'layouts/question_footer', this_question_id: @question.id %>
-       
-    </footer>
+        <h1 style="text-align:center;">登録されている問題はありません</h1>
+        
+    <% end %>
     
-<% else %>
-
-    <h1 style="text-align:center;">問題はありません</h1>
-    
-<% end %>
-
-
-<div id="audio">
-    
-    <!-- 疑問 $ (.audioplay).val()がjsにより変わったら、srcに代入される値も変わるのか? -->
-    <!-- 結論　変わらない　直接 audio.srcに変数を代入する必要あり 予想 js.erbにより id = sound_url が書き換えられるが、scriptが参照するのは読み込まれた時の値-->
-    <!-- https://qiita.com/Kohei_Kishimoto0214/items/d919b00d75dec0699cf0 valueに記述しjavascriptに変数を渡す -->
-    <div id = "sound">
-        <%= render 'layouts/audio', sound_file: "apple.mp3", num: 1 %>
-    </div>
 </div>

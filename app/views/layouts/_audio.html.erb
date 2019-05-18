@@ -1,4 +1,4 @@
-<button><i class="fas fa-play fa-border fa-4x" type="button" id="audiobutton<%=num%>" value="" style="text-align:center;" ></i></button> 
+<button><i class="fas fa-play fa-border fa-4x" type="button" id="audiobutton<%=num%>" value=""  ></i></button> 
 <script>
     $(function() {
         if(!audio){
@@ -10,7 +10,6 @@
         if(audio.canPlayType){
             if(audio.canPlayType("audio/ogg") != ""){
                 src =  "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/0000.mp3";
-                    //上記により、audioplayのvalに格納されたURLをsrcに渡せる
             }
         }
         if(src != ""){
@@ -18,7 +17,6 @@
                 //ajaxはページが読み込まれるわけではないので、処理はこの .clickで行うことになる
                 audio.src = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/<%= sound_file %>";
                 if(state == 0){
-                    /* audio.srcに直接代入する */
                     audio.load();
                     audio.play();
                     state = 0;

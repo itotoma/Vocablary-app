@@ -16,56 +16,35 @@ class HomeController < ApplicationController
     end
     
     def question
-        
-        #最初はURLからストーリーとステータス情報を送る
-        if params[:status] == "unclear"
-            if params[:story_id]
-                @story = Story.find(params[:story_id])
-                @question = @story.questions[0]
-                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
-                @status = params[:status]
-            end
-        end
-        
-        if params[:status] == "collect"
-            if params[:story_id]
-                @story = Story.find(params[:story_id])
-                @question = @story.questions[0]
-                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
-                @status = params[:status]
-            end
-        end
-        
-        if params[:status] == "incollect"
-            if params[:story_id]
-                @story = Story.find(params[:story_id])
-                @question = @story.questions[0] #status incollect のみ
-                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
-                @status = params[:status]
-            end
-        end
-        
-        if params[:status] == "Like"
-            if params[:story_id]
-                @story = Story.find(params[:story_id])
-                @question = @story.questions[0] #Likeのみ
-                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
-                @status = params[:status]
-            end
-        end
-        
-        if params[:status] == "all"
-            if params[:story_id]
-                @story = Story.find(params[:story_id])
-                @question = @story.questions[0]
-                @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{@question.sound_file}"
-                @status = params[:status]
-            end
+
+    ### Initialize process
+        if params[:story_id]
+            @question = select_question_whose_status_is_(params[:selecting_status],params[:story_id])[0]
+            @story = Story.find(params[:story_id])
+            @status = params[:selecting_status]
         end
         
         
-        transition_from_question_to_answer
-        transition_from_answer_to_question
+    ### Ajax Process
+        if params[:position] == "favorite"
+            favorite =  @current_user.favorites.find_by(question_id: params[:question_id])
+            if favorite.present?
+                favorite.delete
+            else
+                @current_user.favorites.build(question_id: params[:question_id]).save
+            end
+            @question = Question.find(params[:question_id])
+            @aim = 3
+        end
+        
+        
+        if params[:position] == "question_page"     
+            transition_from_question_to_answer
+        end
+        
+        if params[:position] == "answer_page"     
+            transition_from_answer_to_question
+        end
             
         respond_to do |format|
             format.html
@@ -77,54 +56,39 @@ class HomeController < ApplicationController
    
     private
     
+    def select_question_whose_status_is_(request_status,story)
+        whole_questions = []
+        if request_status == "all"
+            whole_questions = Question.all.where(story_id: story)
+        elsif request_status == "favorite"
+            whole_questions = @current_user.favorite_questions.where(story_id: story)
+        elsif request_status == 'unclear'
+            already_answered_question_ids = @current_user.questions.where(story_id: story).ids
+            all_question = Question.all.where(story_id: story)
+            whole_questions = all_question.where.not('id IN (?)',already_answered_question_ids)
+        else
+            question_ids_which_has_selected_status = @current_user.statuses.where(status: request_status).ids
+            whole_questions = Story.find(story).questions.where('id IN (?)',question_ids_which_has_selected_status)
+        end
+        return whole_questions
+    end
    
     def transition_from_question_to_answer
-        
-        if params[:position] == "question_page"     
-            @this_question_id = params[:this_question_id]
-            @sound_url = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/#{Question.find(@this_question_id).sound_file}"
-            #current_userとquestionのStatusがすでに作成されている場合 -> @this_status は Update
-            #current_userとquestionのStatusがすでに作成されていない場合 -> @this_status は build
-            @answer = Question.find(@this_question_id).answer
-            @aim = 1
-        end
-        
+        @status = "all"
+        @question = Question.find(params[:this_question_id])
+        @aim = 1
     end
     
     def transition_from_answer_to_question
-        
-        if params[:position] == "answer_page"     
-            given_status = params[:status]
-            given_question_id = params[:this_question_id]
-            @this_story = Question.find(given_question_id).story
-            
-            for question in @this_story.questions
-                if question.id > given_question_id.to_i
-                    @next_question = question.question
-                    @next_question_id = question.id
-                    @sound_file = question.sound_file
-                    break
-                end
-            end
-            
-            target = current_user.statuses.where(question_id: given_question_id)
-            if target.present?
-                target.update(status: given_status)
-            else
-                Status.create(status: given_status, question_id: given_question_id, user_id: current_user.id)
-            end
-            
-            if @next_question_id.present?
-                @aim = 0
-            else
-                @aim = 2
-            end
-            #問題を入れ替える
+        story = Question.find(params[:this_question_id]).story
+        @question = select_question_whose_status_is_(params[:selecting_status], story.id).where('id > ?', params[:this_question_id]).first
+        request_status = current_user.statuses.where(question_id: params[:this_question_id]).first_or_create
+        request_status.update(status: params[:request_status])
+        if @question.present?
+            @aim = 0
+        else
+            @aim = 2
         end
     end
-    
-    
-        
-    
 
 end

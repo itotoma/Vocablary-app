@@ -69,6 +69,42 @@ footer {
 }
 
 #audio{
-  text-align: center;
-  margin-top: 20px;
+  position: fixed;
+  left:calc(50% - 60px);
+  margin: 0 0 0 0;
+  width: 100px;
+  top: 400px;
+}
+
+#favorite{
+  position: fixed;
+  left:calc(50% + 80px);
+  top: 410px;
+}
+
+.wraper {
+  height: 80vh;
+  position: relative;/*←相対位置*/
+}
+
+footer{
+  width: 100%;
+}
+
+footer .question_footer{
+   width: 100%;
+   position: absolute;
+   text-align: center;
+   background-color: gray;
+   bottom: 0px;
+   padding: 10px 0px;
+}
+
+footer .question_footer h1{
+  color: white;
+}
+
+footer .answer_select{
+  padding: 15px;
+  bottom: 0px;
 }
