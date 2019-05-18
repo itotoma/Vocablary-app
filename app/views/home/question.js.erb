@@ -1,14 +1,15 @@
 <%# if transition from question to answer %>
 if(<%= @aim %> == 0){
-    $('#footer').html("<%= escape_javascript(render 'layouts/question_footer', this_question_id: @question.id) %>");
+    $('#footer').html("<%= escape_javascript(render 'layouts/question_footer', this_question_id: @question.id, selecting_sta: @selecting_status, ind: @index, total: @total) %>");
     $('#answer').html("");
     $('#question').html("<%= @question.question %>");
     $('#audio').html("<%= escape_javascript(render 'layouts/audio', sound_file: @question.sound_file , num: @question.id) %>");
     $('#favorite').html("<%= escape_javascript(render 'layouts/favorite_star', question: @question) %>");
+    $('#numerator').html("<%= @index.to_i+1 %>")
 }
 
 if(<%= @aim %> == 1){
-    $('#footer').html("<%= escape_javascript(render 'layouts/answer_footer', question_id: @question.id) %>");
+    $('#footer').html("<%= escape_javascript(render 'layouts/answer_footer', question_id: @question.id, selecting_sta: @selecting_status, ind: @index, total: @total) %>");
     $('#answer').html("<%= @question.answer %>");
     $('#favorite').html("<%= escape_javascript(render 'layouts/favorite_star', question: @question) %>");
 }
@@ -17,6 +18,7 @@ if(<%= @aim %> == 2 ){
     $('#footer').html("");
     $('#answer').html("");
     $('#question').html("問題は以上です!");
+    $('#audio').html("")
     $('#favorite').html("");
 }
 

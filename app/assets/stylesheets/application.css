@@ -108,3 +108,14 @@ footer .answer_select{
   padding: 15px;
   bottom: 0px;
 }
+
+.sub_nav{
+  background-color:rgba(0,0,255,0.1); 
+  height:30px; 
+  margin-top: 0px;
+}
+.fraction{
+  display: inline-block;
+  color:red; 
+  font-size:20px;
+}

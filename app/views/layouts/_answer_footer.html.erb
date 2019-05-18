@@ -1,8 +1,8 @@
 <div class="answer_select">
-    <%= link_to(home_question_path(this_question_id: question_id, request_status: "correct", selecting_status: "all", position: "answer_page"), remote: true) do %>
+    <%= link_to(home_question_path(this_question_id: question_id, request_status: "correct", selecting_sta: selecting_sta, position: "answer_page", ind: ind, total: total), remote: true) do %>
                <button class="btn btn-danger col-xs-6"><i class="far fa-circle fa-5x"></i></button>
     <% end %>
-    <%= link_to(home_question_path(this_question_id: question_id, request_status: "incorrect", selecting_status: "all", position: "answer_page"), remote: true) do %>
+    <%= link_to(home_question_path(this_question_id: question_id, request_status: "incorrect", selecting_sta: selecting_sta, position: "answer_page", ind: ind, total: total), remote: true) do %>
                <button class="btn btn-primary col-xs-6"><i class="fas fa-times fa-5x"></i></button>
     <% end %>
 </div>

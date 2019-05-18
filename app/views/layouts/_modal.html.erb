@@ -6,11 +6,11 @@
       <div class="modal-body">
          <!-- 送るべき情報  Status タイトル 何話メカ -->
          <!-- 問題数0の場合は表示させないことにする -->
-        <%= link_to(home_question_path(story_id: id, selecting_status: "unclear")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2">未回答のみ</button><% end %>
-        <%= link_to(home_question_path(story_id: id, selecting_status: "correct")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="far fa-circle"></i>のみ</button><% end %>
-        <%= link_to(home_question_path(story_id: id, selecting_status: "incorrect")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="fas fa-times"></i>のみ</button><% end %>
-        <%= link_to(home_question_path(story_id: id, selecting_status: "favorite")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="fas fa-star"></i>のみ</button><% end %>
-        <%= link_to(home_question_path(story_id: id, selecting_status:   "all")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2">全て</button><% end %>
+        <%= link_to(home_question_path(story_id: id, selecting_status: "unclear")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2">未回答のみ <%= select_question_whose_status_is_("unclear",id).count %> </button><% end %>
+        <%= link_to(home_question_path(story_id: id, selecting_status: "correct")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="far fa-circle"></i>のみ <%= select_question_whose_status_is_("correct",id).count %></button><% end %>
+        <%= link_to(home_question_path(story_id: id, selecting_status: "incorrect")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="fas fa-times"></i>のみ <%= select_question_whose_status_is_("incorrect",id).count %></button><% end %>
+        <%= link_to(home_question_path(story_id: id, selecting_status: "favorite")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2"><i class="fas fa-star"></i>のみ <%= select_question_whose_status_is_("favorite",id).count %></button><% end %>
+        <%= link_to(home_question_path(story_id: id, selecting_status:   "all")) do %><button class="btn btn-default col-xs-8 col-xs-offset-2">全て <%= select_question_whose_status_is_("all",id).count %></button><% end %>
       </div>
       <!-- 6.モーダルのフッタ -->
       <div class="modal-footer">

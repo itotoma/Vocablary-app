@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :questions, through: :statuses
   has_many :favorites
   has_many :favorite_questions, through: :favorites, :source => 'question'
+  has_many :playinfos
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
