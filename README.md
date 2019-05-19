@@ -21,9 +21,9 @@ rails db:create
 rails db:migrate
 ```
 
-#環境変数設定
-###Facebook, twetter,google,yahooの開発者アカウントを取得し,API_KEY と SECRET_KEY を取得します。 
-##.envに以下を記述してください
+# 環境変数設定
+### Facebook, twetter,google,yahooの開発者アカウントを取得し,API_KEY と SECRET_KEY を取得します。 
+## .envに以下を記述してください
 
 ```
 FACEBOOK_KEY = "xxxxxxx"
