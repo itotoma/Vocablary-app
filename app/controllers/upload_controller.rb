@@ -16,7 +16,7 @@ class UploadController < ApplicationController
       # data[0] is header
       unless data2 == data1[0]
         body = data2.split(",")
-        Question.create(question: body[0], answer: body[1], sound_file: body[2], story_id: story.id)
+        Question.create(question: body[1], answer: body[2], sound_file: body[3], story_id: story.id)
       end
     end
     #CSVは保存しないので、文字列検索で追加
