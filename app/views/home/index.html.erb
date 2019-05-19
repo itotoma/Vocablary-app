@@ -2,6 +2,7 @@
     <%= render 'layouts/navbar', title: "単語帳アプリ" %>
 <% end %>
 <div class="col-md-5" style="test-align:center;" >
+    <%= render 'layouts/flash_messages' %>
     <%= link_to "学習する",home_title_list_path(req: "learn"), class: "btn btn-default col-xs-12", style: "margin-top:40px;" %>
     <%= link_to "一覧を見る", home_title_list_path(req: "show"), class: "btn btn-default col-xs-12", style: "margin-top:20px;" %>
 </div>

@@ -67,4 +67,10 @@
         <h1 style="text-align:center;">問題が見つかりません!</h1>
     <% end %>
     
+    <script>
+        window.addEventListener('beforeunload', function(e) {
+            e.returnValue = 'このページを離れると解答は記録されません';
+        }, false);
+    </script>
+    
 </div>

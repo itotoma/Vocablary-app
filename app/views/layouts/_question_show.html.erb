@@ -1,0 +1,23 @@
+<% questions.each do |question| %>
+    <tr style="border-bottom:groove;">
+        <td>
+            <p style="margin-bottom: 0px;"><%= question.question %></p>
+            <p style="margin-top: 0px;"><%= question.answer %></p>
+        </td>
+        <td>
+            <%= render 'layouts/audiomini', sound_file: question.sound_file, num: question.id %>
+        </td>
+        <td class="star" id=<%= question.id %>>
+            <%= render 'layouts/favorite_starmini', question: question %>
+        </td>
+        <td>
+            <% if status(question) == "correct" %>
+                <i class="far fa-circle" style="color:red;"></i>
+            <% elsif status(question) == "incorrect" %>
+                <i class="fas fa-times" style="color:blue;"></i>
+            <% else %>
+                <p>未</p>
+            <% end %>
+        </td>
+    </tr>
+<% end %>

@@ -9,7 +9,7 @@ class HomeController < ApplicationController
         if params[:story_id]
             @story = Story.find(params[:story_id])
             @status = params[:selecting_status]
-            @questions = select_question_whose_status_is_(params[:selecting_status],params[:story_id])
+            @questions = select_question_whose_status_is_(params[:selecting_status],params[:story_id]).page(params[:page]).per(50)
         end
         
         if params[:position] == "favorite"
@@ -34,7 +34,6 @@ class HomeController < ApplicationController
             @nav_title = "一覧を見る"
         end
         @title = Story.group(:title).count.keys
-    
     end
     
     def question
@@ -53,8 +52,7 @@ class HomeController < ApplicationController
             @story = Story.find(params[:story_id])
             @status = params[:selecting_status]
         end
-        
-        
+
     ### Ajax Process
         if params[:position] == "question_page"     
             transition_from_question_to_answer

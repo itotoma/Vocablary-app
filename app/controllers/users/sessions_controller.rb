@@ -7,9 +7,10 @@ class Users::SessionsController < Devise::SessionsController
     
   end
   # GET /resource/sign_in
-  # def new
+  
+  #def new
   #   super
-  # end
+  #end
 
   # POST /resource/sign_in
   # def create

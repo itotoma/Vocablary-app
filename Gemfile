@@ -50,6 +50,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem 'kaminari'
+gem "jquery-rails"
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'

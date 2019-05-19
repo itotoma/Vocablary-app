@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'home/list'
   post 'home/question'
   
+  get 'settings/password'
+  post 'settings/password'
+  
   devise_scope :user do
     root :to => "devise/sessions#new"
   end
