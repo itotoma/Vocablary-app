@@ -1,0 +1,128 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+.left-float{
+  /*float: left;
+  list-style: none;*/
+  display:  inline-block;
+}
+
+.auth{
+    position: relative;
+    border-top: dotted 3px;
+    padding-top:20px;
+}
+
+.caption{
+  font-size: 1em;
+  text-align: center;
+}
+
+.fa-twitter-square{
+  color: #1DA1F2;
+}
+
+.fa-facebook{
+  color: #3B5998;
+}
+
+.fa-google-plus-square{
+  color:#DB4437;
+}
+
+.fa-yahoo{
+  color:red;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.icon-bar{
+  background-color: white;
+}
+
+.modal-content button {
+  margin-bottom: 10px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  height: 100px;
+}
+
+#audio{
+  position: fixed;
+  left:calc(50% - 60px);
+  margin: 0 0 0 0;
+  width: 100px;
+  top: 60%;
+}
+
+#favorite{
+  position: fixed;
+  left:calc(50% + 80px);
+  top: 62%;
+}
+
+.wraper {
+  height: 80vh;
+  position: relative;/*←相対位置*/
+}
+
+footer{
+  width: 100%;
+}
+
+footer .question_footer{
+   width: 100%;
+   position: absolute;
+   text-align: center;
+   background-color: gray;
+   bottom: 0px;
+   padding: 10px 0px;
+}
+
+footer .question_footer h1{
+  color: white;
+}
+
+footer .answer_select{
+  padding: 15px;
+  bottom: 0px;
+}
+
+.sub_nav{
+  background-color:rgba(0,0,255,0.1); 
+  height:30px; 
+  margin-top: 0px;
+}
+.fraction{
+  display: inline-block;
+  color:red; 
+  font-size:20px;
+}
+
+.inline{
+  display: inline-block;
+  font-size:20px;
+  margin-left:15px;
+}
