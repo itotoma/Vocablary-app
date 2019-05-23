@@ -29,6 +29,4 @@ $rails db:migrate
 ```
 
 4 Heroku app を作り、URLを教えてください
-```
 SNSログインの設定に必要です。設定はこちらで行います。
-```
