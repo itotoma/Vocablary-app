@@ -9,7 +9,11 @@ class QuizlistController < ApplicationController
     if params[:story_id]
         @story = Story.find(params[:story_id])
         @status = params[:selecting_status]
-        @questions = select_question_whose_status_is_(params[:selecting_status],params[:story_id]).page(params[:page]).per(50)
+        if select_question_whose_status_is_(params[:selecting_status],params[:story_id]).count > 50
+          @questions = select_question_whose_status_is_(params[:selecting_status],params[:story_id]).page(params[:page]).per(50)
+        else
+          @questions = select_question_whose_status_is_(params[:selecting_status],params[:story_id])
+        end
     end
         
     if params[:position] == "favorite"

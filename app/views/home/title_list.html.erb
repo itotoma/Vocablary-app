@@ -25,7 +25,9 @@
                       <% elsif params[:req] == "show" %>
                           <%= render 'layouts/modal_show', id: @id %>
                       <% end %>
-                    <li class="list-group-item" style="height:30px; color:red;"><%= button_to "この話を削除する", { :action => "destroy", :id => @id }, :confirm => "本当に削除しますか?", :method => :delete %></li>
+                     <% if @current_user.email == "test@gmail.com"%>
+                        <li class="list-group-item" style="height:30px; color:red;"><%= button_to "この話を削除する", { :action => "destroy", :id => @id }, :confirm => "本当に削除しますか?", :method => :delete %></li>
+                    <% end %>
                 </ul>
               <% end %>
             </div>
