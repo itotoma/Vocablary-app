@@ -9,13 +9,13 @@
         var state = 0;  // 0:pause, 1:playing
         if(audio.canPlayType){
             if(audio.canPlayType("audio/ogg") != ""){
-                src =  "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/0000.mp3";
+                src =  "<%=  ENV['S3_HOST'] + "0000.mp3" %>";
             }
         }
         if(src != ""){
             $("#audiobutton<%=num%>").click(function(ev){
                 //ajaxはページが読み込まれるわけではないので、処理はこの .clickで行うことになる
-                audio.src = "https://s3-ap-northeast-1.amazonaws.com/test-vocablary-app/uploads/vocab-app/<%= sound_file %>";
+                audio.src = "<%= ENV['S3_HOST'] + sound_file %>";
                 if(state == 0){
                     audio.load();
                     audio.play();

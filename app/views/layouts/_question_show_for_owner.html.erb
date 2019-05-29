@@ -1,5 +1,6 @@
 <tr>
-    <th class="col-xs-10"></th>
+    <th class="col-xs-9"></th>
+    <th class="col-xs-1"></th>
     <th class="col-xs-1"></th>
     <th class="col-xs-1"></th>
     <th class="col-xs-1"></th>
@@ -25,6 +26,9 @@
                 <% else %>
                     <p>未</p>
                 <% end %>
+            </td>
+            <td>
+               　<%= button_to "削除", { :action => "destroy", :id => question.id }, :confirm => "本当に削除しますか?", :method => :delete %>
             </td>
         </tr>
     <% end %>

@@ -1,5 +1,5 @@
-module HomeHelper
-    
+module QuizlistHelper
+ 
     def select_question_whose_status_is_(request_status,story)
         whole_questions = []
         if request_status == "all"
@@ -7,6 +7,7 @@ module HomeHelper
         elsif request_status == "favorite"
             whole_questions = @current_user.favorite_questions.where(story_id: story)
         elsif request_status == "unclear"
+            
             whole_questions = @current_user.questions.where(story_id: story)
             whole_questions = Question.all.where(story_id: story)
             already_answered_question_ids = @current_user.questions.where(story_id: story).ids
@@ -34,7 +35,4 @@ module HomeHelper
         end
         return status
     end
-            
-    
-    
 end

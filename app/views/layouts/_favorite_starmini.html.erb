@@ -1,9 +1,9 @@
 <% if question.favorites.where(user_id: @current_user.id).present? %>
-    <%= link_to(home_list_path(question_id: question.id, position: "favorite"), remote: true) do %>
+    <%= link_to(quizlist_index_path(question_id: question.id, position: "favorite"), remote: true) do %>
         <i class="fas fa-star fa-1x" style="color:yellow;"></i>
     <% end %>
 <% else %>
-    <%= link_to(home_list_path(question_id: question.id, position: "favorite"), remote: true) do %>
+    <%= link_to(quizlist_index_path(question_id: question.id, position: "favorite"), remote: true) do %>
         <i class="fas fa-star fa-1x" style="color:gray;"></i>
     <% end %>
 <% end %>

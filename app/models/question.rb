@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   has_many :users, through: :statuses
   has_many :favorites
   has_many :users, through: :favorites
+  has_many :favorite_users, through: :favorites, :source => 'user'
   
   
   def self.import(file)

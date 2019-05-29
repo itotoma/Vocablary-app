@@ -2,6 +2,7 @@
     <%= render 'layouts/navbar',title: "管理者画面" %>
 <% end %>
 
+<%= render 'layouts/flash_messages' %>
 <div class="panel panel-default", style="margin-top:30px;">
     <div class="panel-body">
         <%= form_tag import_upload_index_path, multipart: true do %>
@@ -19,3 +20,31 @@
         <% end %>
        </div>
 </div>
+<hr>
+<h1>CSVのフォーマットの注意</h1>
+<p>アップロードするcsvは以下のフォーマットでないと認識されません。</p>
+<p>ヘッダー(一番上の行)は完全一致が必須です。</p>
+<table border="1" width="800" cellspacing="0" cellpadding="5" bordercolor="#333333">
+    <td>ID</td>
+    <td>Question</td>
+    <td>Answer</td>
+    <td>Sound_file</td>
+    
+    <tr>
+        <td>1</td>
+        <td>(クイズを自由に記述してください)</td>
+        <td>(解答を自由に記述してください)</td>
+        <td>mp3ファイル名を記述してください</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Test</td>
+        <td>テスト</td>
+        <td>test.mp3</td>
+    </tr>
+</table>
+<p>.....................</p>
+
+<hr>
+<h2>クイズの削除</h2>
+<p>クイズの削除は、管理者アカウントで一覧から行うことができます。</p>

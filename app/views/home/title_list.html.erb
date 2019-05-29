@@ -1,6 +1,10 @@
 <% content_for :cover do %>
    <%= render 'layouts/navbar', title: @nav_title %>
 <% end %>
+<% if @current_user.email == "test@gmail.com"%>
+    <h4>管理者用画面</h4>
+    <p>この画面ではストーリー単位での削除を行えます(この処理には時間がかかります。)クイズ単位の削除は、一覧ページから行ってください</p>
+<% end %>
 
 <div class="panel-group" id="accordion">
     <% @title.each do |title| %>
@@ -15,12 +19,13 @@
               <% Story.where(title: story.title).order("number").each do |no_story| %>
                 <ul class="list-group">
                   <% @id = no_story.id %>
-                  <li class="list-group-item"><a data-toggle="modal" href="#modal-sample<%= no_story.id %>">第<%= no_story.number %>話</a></li>
+                    <li class="list-group-item"><a data-toggle="modal" href="#modal-sample<%= no_story.id %>">第<%= no_story.number %>話</a></li>
                       <% if params[:req] == "learn" %>
                           <%= render 'layouts/modal_learn', id: @id %>
                       <% elsif params[:req] == "show" %>
                           <%= render 'layouts/modal_show', id: @id %>
                       <% end %>
+                    <li class="list-group-item" style="height:30px; color:red;"><%= button_to "この話を削除する", { :action => "destroy", :id => @id }, :confirm => "本当に削除しますか?", :method => :delete %></li>
                 </ul>
               <% end %>
             </div>

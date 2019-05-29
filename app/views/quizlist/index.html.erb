@@ -1,3 +1,6 @@
+<% if @current_user.email == "test@gmail.com" %>
+    <h4>管理者用画面</h4>
+<% end %>
 <% content_for :cover do %>
     <header>
         <nav class="navbar navbar-default navbar-static-top", style="background-color:skyblue; height:70px; margin-bottom:0px;">
@@ -42,15 +45,11 @@
 <% end %>
 
 <table>
-    <tr>
-        <th class="col-xs-10"></th>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-1"></th>
-    </tr>
-    <tbody  class="jscroll"> 
+    <% if @current_user.email == "test@gmail.com" %>
+        <%= render 'layouts/question_show_for_owner',questions: @questions %>
+    <% else %>
         <%= render 'layouts/question_show',questions: @questions %>
-    </tbody>
-
+    <% end %>
 </table>
+
 <%= paginate @questions %>
