@@ -21,7 +21,7 @@ class UploadController < ApplicationController
           message="CSVのフォーマットを確認してください"
           break
         end
-      elsif data2.split(",")[1].present? && data2.split(",")[2].present?
+      elsif data2.split(",")[1].present? && data2.split(",")[2].present? && data2.split(",")[3].present?
         body = data2.split(",")
         Question.create(question: body[1], answer: body[2], sound_file: body[3], story_id: story.id)
       else
